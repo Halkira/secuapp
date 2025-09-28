@@ -1,0 +1,46 @@
+[ ca ]
+default_ca = CA_default
+
+[ CA_default ]
+dir               = ca/intermediate
+database          = ca/intermediate/index.txt
+new_certs_dir     = ca/intermediate/newcerts
+certificate       = ca/intermediate/certs/interCA.pem
+private_key       = ca/intermediate/private/interCA.key
+serial            = ca/intermediate/serial
+crlnumber         = ca/intermediate/crlnumber
+crl               = ca/intermediate/crl/interCA.crl
+default_days      = 365
+default_crl_days  = 30
+default_md        = sha256
+policy            = policy_any
+x509_extensions   = usr_cert
+
+[ policy_any ]
+countryName = optional
+stateOrProvinceName = optional
+organizationName = optional
+commonName = optional
+emailAddress = optional
+
+[ usr_cert ]
+basicConstraints = CA:FALSE
+keyUsage = critical, digitalSignature, keyEncipherment
+extendedKeyUsage = clientAuth
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer
+
+[ server_cert ]
+basicConstraints = CA:FALSE
+keyUsage = critical, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = localhost
+DNS.2 = host.docker.internal
+
+[ crl_ext ]
+authorityKeyIdentifier=keyid:always

@@ -1,0 +1,62 @@
+[project]
+name = "logs"
+version = "0.1.0"
+description = ""
+authors = [{ name = "etu49397", email = "etu49397@henallux.be" }]
+readme = "../README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic (>=2.11.3,<3.0.0)",
+    "fastapi[standard] (>=0.115.12,<0.116.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "pydantic-settings (>=2.8.1,<3.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "uvicorn (>=0.34.1,<0.35.0)",
+    "cryptography (>=45.0.4,<46.0.0)",
+]
+
+[tool.poetry]
+packages = [{ include = "logs", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.6"
+pytest-asyncio = "^0.26.0"
+pytest = "^8.3.5"
+
+[tool.ruff]
+line-length = 79
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D100",   # D100    Missing docstring in public module
+    "D101",   # D101    Missing docstring in public class
+    "D102",   # D102	Missing docstring in public method
+    "D103",   # D103	Missing docstring in public function
+    "D104",   # D104	Missing docstring in public package
+    "D105",   # D105	Missing docstring in magic method
+    "D106",   # D106	Missing docstring in public nested class
+    "D107",   # D107	Missing docstring in __init__
+    "D213",   # D213	Missing type annotation for self in method
+    "ANN101", # ANN101	Annotation type is not defined
+    "D211",   # D211	No blank lines allowed before class docstring
+    "ISC001", # ISC001	Too many imports
+    "UP017",  # UP017	Consider using a dataclass
+    "D203",   # D203	1 blank line required before class docstring
+    "D205",   # D205	1 blank line required between summary line and description
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",    # S101	Use of assert detected
+    "ANN001",  # ANN001	Do not use bare except
+    "PLR0913", # PLR0913	Too many arguments
+    "ANN201",  # ANN201	Do not use bare except
+    "SLF001",  # SLF001	Do not use bare except
+    "DTZ001",  # DTZ001	Do not use bare except
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

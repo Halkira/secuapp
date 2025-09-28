@@ -1,0 +1,78 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = [{ name = "etu49397", email = "etu49397@henallux.be" }]
+readme = "../README.md"
+requires-python = ">=3.13,<4.0.0"
+dependencies = [
+    "pydantic (>=2.11.5,<3.0.0)",
+    "fastapi[standard] (>=0.115.12,<0.116.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "pydantic-settings (>=2.9.1,<3.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "uvicorn (>=0.34.2,<0.35.0)",
+    "webauthn (>=2.5.2,<3.0.0)",
+    "itsdangerous (>=2.2.0,<3.0.0)",
+    "email-validator (>=2.2.0,<3.0.0)",
+    "pyotp (>=2.9.0,<3.0.0)",
+    "starsessions (>=2.2.1,<3.0.0)",
+    "redis (>=6.1.0,<7.0.0)",
+    "starlette-securecookies[csrf] (>=1.1.1,<2.0.0)",
+    "starlette-csrf (>=3.0.0,<4.0.0)",
+    "async-fastapi-jwt-auth[asymmetric] (>=0.6.6,<0.7.0)",
+    "sqlmodel (>=0.0.24,<0.0.25)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "resend (>=2.10.0,<3.0.0)",
+    "opencv-python (>=4.11.0.86,<5.0.0.0)",
+    "numpy (>=2.2.6,<3.0.0)",
+    "aiortc (>=1.12.0,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{ include = "backend", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.10"
+pytest-asyncio = "^0.26.0"
+pytest = "^8.3.5"
+
+[tool.ruff]
+line-length = 79
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D100",   # D100    Missing docstring in public module
+    "D101",   # D101    Missing docstring in public class
+    "D102",   # D102	Missing docstring in public method
+    "D103",   # D103	Missing docstring in public function
+    "D104",   # D104	Missing docstring in public package
+    "D105",   # D105	Missing docstring in magic method
+    "D106",   # D106	Missing docstring in public nested class
+    "D107",   # D107	Missing docstring in __init__
+    "D213",   # D213	Missing type annotation for self in method
+    "ANN101", # ANN101	Annotation type is not defined
+    "D211",   # D211	No blank lines allowed before class docstring
+    "ISC001", # ISC001	Too many imports
+    "UP017",  # UP017	Consider using a dataclass
+    "D203",   # D203	1 blank line required before class docstring
+    "D205",   # D205	1 blank line required between summary line and description
+    "TD002",  # TD002	Missing author in TODO
+    "TD003",  # TD003	Missing issue link for this TODO
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",    # S101	Use of assert detected
+    "ANN001",  # ANN001	Do not use bare except
+    "PLR0913", # PLR0913	Too many arguments
+    "ANN201",  # ANN201	Do not use bare except
+    "SLF001",  # SLF001	Do not use bare except
+    "DTZ001",  # DTZ001	Do not use bare except
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,19 @@
+@use "./styles/index" as *;
+@use "./styles/home" as Home;
+@use "./styles/root" as Root;
+@use "./styles/stream" as Stream;
+@use "./styles/login_register" as LoginRegister;
+@use "./styles/shared" as Shared;
+
+@font-face { // Example
+  font-family: 'Oxanium-light';
+  src: url('/public/fonts/Oxanium/Oxanium-Light.ttf') format('truetype');
+}
+
+@include Root.Root;
+@include Home.Home;
+@include Stream.Stream;
+@include LoginRegister.LoginRegister;
+@include Shared.Shared;
+
+
